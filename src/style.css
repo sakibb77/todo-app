@@ -1,0 +1,12 @@
+.task-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background-color: teal;
+  border-radius: 5px;
+}

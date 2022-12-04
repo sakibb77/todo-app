@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import AddTask from "./components/AddTask";
+import TaskList from "./components/TaskList";
+import { useEffect, useState } from "react";
+import { data } from "autoprefixer";
 
-function App() {
+const App = () => {
+  const [tasks, setTasks] = useState([]);
+
+  //getting data from the server
+  useEffect(() => {
+    fetchingData();
+  }, []);
+
+  //fetching data from server
+  const fetchingData = async () => {
+    try {
+      const res = await fetch(
+        "https://dramatic-quintessential-deerstalker.glitch.me/tasks"
+      );
+      if (!res.ok) throw new Error("somethign went wrong");
+      const data = await res.json();
+      setTasks(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-wrapper bg-gradient-to-t from-gray-900 to-teal-900 text-lg text-gray-100 flex flex-col py-10 px-4 ">
+      <Header />
+      <AddTask tasks={tasks} setTasks={setTasks} />
+      <TaskList tasks={tasks} />
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
