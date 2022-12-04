@@ -14,7 +14,7 @@ const TaskItem = ({ task, handleEditeSubmit, editedText, setEditedText }) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-gray-800 to-slate-800 rounded p-5 flex items-center justify-between hover:bg-gradient-to-r hover:from-teal-800 hover:to-gray-800 group">
+    <div className=" bg-gradient-to-r from-gray-800 to-slate-800 rounded p-5 flex items-center justify-between hover:bg-gradient-to-r  hover:from-teal-800 hover:to-gray-800 group">
       <div className="task-item-left flex items-center gap-3">
         <span className="flex items-center">
           <input
@@ -43,7 +43,7 @@ const TaskItem = ({ task, handleEditeSubmit, editedText, setEditedText }) => {
 
         {!task.isEditable && (
           <p
-            className={`text-lg md:xl font-semibold tracking-wide group-hover:text-teal-400 ${
+            className={`text-lg md:xl font-semibold tracking-wide duration-300 group-hover:text-teal-400 ${
               checked && "line-through text-gray-400"
             }`}
           >

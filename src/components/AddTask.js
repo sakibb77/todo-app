@@ -45,6 +45,7 @@ const AddTask = ({ tasks, setTasks }) => {
         onChange={(e) => setTast(e.target.value)}
         ref={inputRef}
         type="text"
+        required
         name=""
         id=""
         className="bg-transparent outline-none text-xl border-b-2 border-teal-500 text-center"
