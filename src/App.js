@@ -4,6 +4,9 @@ import AddTask from "./components/AddTask";
 import TaskList from "./components/TaskList";
 import { useEffect, useState } from "react";
 import { data } from "autoprefixer";
+import { createContext } from "react";
+
+export const DeleteContext = createContext();
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -27,11 +30,33 @@ const App = () => {
     }
   };
 
+  //deleting data
+  const handleDelete = (id) => {
+    deleteData(id);
+    //set updated tasks
+    setTasks(tasks.filter((task) => id !== task.id));
+  };
+
+  //delete data
+  const deleteData = async (id) => {
+    await fetch(
+      `https://dramatic-quintessential-deerstalker.glitch.me/tasks/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "content-type": "aplication/json",
+        },
+      }
+    );
+  };
+
   return (
     <div className="main-wrapper bg-gradient-to-t from-gray-900 to-teal-900 text-lg text-gray-100 flex flex-col py-10 px-4 ">
       <Header />
       <AddTask tasks={tasks} setTasks={setTasks} />
-      <TaskList tasks={tasks} />
+      <DeleteContext.Provider value={handleDelete}>
+        <TaskList tasks={tasks} />
+      </DeleteContext.Provider>
       <Footer />
     </div>
   );

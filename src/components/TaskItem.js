@@ -1,7 +1,11 @@
 import React from "react";
+import { useContext } from "react";
 import { BiEdit, BiTrashAlt } from "react-icons/bi";
+import { DeleteContext } from "../App";
 
 const TaskItem = ({ task }) => {
+  const handleDelete = useContext(DeleteContext);
+
   return (
     <div className="bg-gradient-to-r from-gray-800 to-slate-800 rounded p-5 flex items-center justify-between hover:bg-gradient-to-r hover:from-teal-800 hover:to-gray-800 group">
       <div className="task-item-left flex items-center gap-3">
@@ -22,7 +26,10 @@ const TaskItem = ({ task }) => {
         <button className="hover:text-teal-400 duration-300 cursor-pointer ">
           <BiEdit />
         </button>
-        <button className="hover:text-rose-500 duration-300 cursor-pointer">
+        <button
+          className="hover:text-rose-500 duration-300 cursor-pointer"
+          onClick={() => handleDelete(task.id)}
+        >
           <BiTrashAlt />
         </button>
       </div>
